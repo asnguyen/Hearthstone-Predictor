@@ -1,0 +1,1 @@
+This folder will be used to test the concept of ngrams
