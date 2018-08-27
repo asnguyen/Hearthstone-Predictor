@@ -1,4 +1,6 @@
 import itertools
+import json
+import pickle
 
 def create_ngrams_from_file(n, card_played):
     list_ngram = []
@@ -41,6 +43,21 @@ def print_tuple(tup):
     val = val + ")"
     return val
 
+def save_dataset(dataset):
+    afile = open("data.pkl",'wb')
+    pickle.dump(dataset, afile)
+    afile.close()
+
+def load_dataset(filename):
+    afile = open(filename, 'rb')
+    dataset = pickle.load(afile)
+    afile.close()
+    return dataset
+
+def print_dataset(dataset):
+     for key in dataset.keys():
+        print(str(key)+" : "+str(dataset[key]))
+
 def main():
     print("Begin Code")
 
@@ -53,8 +70,16 @@ def main():
 
     print(len(dataset.keys()))
 
-    for key in dataset.keys():
-        print(str(key)+" : "+str(dataset[key]))
+    #for key in dataset.keys():
+    #    print(str(key)+" : "+str(dataset[key]))
+
+    save_dataset(dataset)
+
+    new_dataset = load_dataset("data.pkl")
+
+    print_dataset(new_dataset)
+
+   
 
     print("End Code")
 
